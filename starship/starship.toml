@@ -1,0 +1,58 @@
+# ~/.config/starship.toml
+
+# --- GLOBAL SETTINGS ---
+add_newline = true
+# A minimal "HUD" format: 
+# [Top Line]: Directory -> Git -> Language Version
+# [Bottom Line]: Prompt Character
+format = """
+[┌─](bold #303030)$directory$git_branch$git_status$golang$c$rust$python
+[└─>](bold #303030) $character"""
+
+# --- DIRECTORY (The Context) ---
+[directory]
+style = "bold #20c20e"  # Your specific Green
+truncation_length = 4
+truncation_symbol = "…/"
+read_only = " 🔒"
+format = "[ $path ]($style)"
+
+# --- GIT (The Status) ---
+[git_branch]
+symbol = " "
+style = "bold #44aacc" # Teal/Blue for contrast against the Green
+format = "via [$symbol$branch]($style) "
+
+[git_status]
+style = "bold #cc5555" # Muted Red for changes
+format = '([$all_status$ahead_behind]($style) )'
+
+# --- LANGUAGES (Precision Info) ---
+# Only shows when you are in a project folder. 
+# Styled dark gray/green so they don't distract.
+
+[golang]
+symbol = " "
+style = "dimmed green"
+format = "[$symbol($version )]($style)"
+
+[c]
+symbol = " "
+style = "dimmed green"
+format = "[$symbol($version )]($style)"
+
+[rust]
+symbol = " "
+style = "dimmed green"
+format = "[$symbol($version )]($style)"
+
+[python]
+symbol = " "
+style = "dimmed green"
+format = "[$symbol($version )]($style)"
+
+# --- THE PROMPT SYMBOL ---
+[character]
+success_symbol = "[_](bold #20c20e)" # Blinking Green Cursor
+error_symbol = "[_](bold #cc5555)"   # Turns Red on error
+vimcmd_symbol = "[N](bold #303030)"  # Shows 'N' when in Normal/Command mode

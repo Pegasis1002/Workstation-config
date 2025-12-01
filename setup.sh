@@ -16,6 +16,10 @@ sudo pacman -S --noconfirm \
     python-adblock python-tldextract \
     keyd
 
+# --- Installing Fonts --- 
+echo " Installing Essential Fonts Packages..."
+sudo pacman -S ttf-jetbrains-mono-nerd noto-fonts-emoji
+
 # --- 2. AUR HELPER (Yay) ---
 if ! command -v yay &> /dev/null; then
     echo "📦 Installing Yay..."
@@ -39,12 +43,13 @@ mv ~/.config/hypr ~/.config/hypr.bak 2>/dev/null
 mv ~/.config/kitty ~/.config/kitty.bak 2>/dev/null
 mv ~/.config/nvim ~/.config/nvim.bak 2>/dev/null
 mv ~/.config/qutebrowser ~/.config/qutebrowser.bak 2>/dev/null
+mv ~/.config/fontconfig ~/.config/fontconfig.bak 2>/dev/null
 
 # Stow commands (Maps folders in ./ to ~/)
 # We need to restructure the dotfiles folder slightly for stow to work perfectly 
 # but for now, we will do manual linking for precision.
 
-mkdir -p ~/.config/hypr ~/.config/kitty ~/.config/nvim ~/.config/qutebrowser
+mkdir -p ~/.config/hypr ~/.config/kitty ~/.config/nvim ~/.config/qutebrowser ~/.config/fontconfig 
 
 ln -sf $(pwd)/.config/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
 ln -sf $(pwd)/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
@@ -52,6 +57,8 @@ ln -sf $(pwd)/.config/nvim/* ~/.config/nvim/
 ln -sf $(pwd)/.config/qutebrowser/* ~/.config/qutebrowser/
 ln -sf $(pwd)/.config/starship.toml ~/.config/starship.toml
 ln -sf $(pwd)/.bashrc ~/.bashrc
+ln -sf $(pwd)/.config/fontconfig ~/.config/fontconfig 
+
 
 # Scripts
 mkdir -p ~/.local/bin

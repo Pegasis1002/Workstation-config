@@ -1,0 +1,32 @@
+/* Hide Tabs Bar (You only want one window/tab anyway) */
+#TabsToolbar { visibility: collapse !important; }
+
+/* Optional: Hide Navigation Bar (URL bar) for full immersion */
+/* To toggle this, you can press F11 for Fullscreen, but this removes it in windowed mode */
+/* #nav-bar { visibility: collapse !important; } */
+
+/* Remove window decorations if Hyprland doesn't catch them */
+#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .titlebar-buttonbox-container {
+  display: none !important;
+}
+
+#TabsToolbar { visibility: collapse !important; }
+#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .titlebar-buttonbox-container {
+  display: none !important;
+}
+
+/* --- NEW: HIDE URL BAR --- */
+#nav-bar { 
+    visibility: collapse !important; 
+    max-height: 0 !important; 
+    margin-bottom: 0 !important;
+}
+
+/* Optional: If you ever desperately need to type a URL, 
+   hovering over the very top of the window could reveal it.
+   Uncomment below if you want that behavior. */
+/* #navigator-toolbox:hover #nav-bar {
+    visibility: visible !important;
+    max-height: 40px !important;
+}
+*/

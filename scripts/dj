@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# 1. Define your categories and song IDs
+# You can get the ID from the URL: youtube.com/watch?v=VIDEO_ID
+
+# Chill / Lo-Fi / Study
+chill_songs=(
+    "jfKfPfyJRdk" # Lofi Girl
+    "5qap5aO4i9A" # Lofi Hip Hop
+    "tSlKSkX_oBo" # Chillstep
+)
+
+# Hype / Gym / Gaming
+hype_songs=(
+    "kYtGl1dX5qI" # Will & Tim
+    "2S24-y0Ij3Y" # Phonk
+    "pWj0b-M1c5E" # High energy
+)
+
+# Japanese / Anime (Since you like that!)
+anime_songs=(
+    "fJ9rUzIMcZQ" # Queen - Bohemian Rhapsody (Example)
+    "7aMOurgDB-o" # Anime opening example
+)
+
+# 2. Select the category based on the argument you pass
+MODE=$1
+
+if [[ "$MODE" == "chill" ]]; then
+    SELECTED_ID=${chill_songs[$RANDOM % ${#chill_songs[@]}]}
+elif [[ "$MODE" == "hype" ]]; then
+    SELECTED_ID=${hype_songs[$RANDOM % ${#hype_songs[@]}]}
+elif [[ "$MODE" == "anime" ]]; then
+    SELECTED_ID=${anime_songs[$RANDOM % ${#anime_songs[@]}]}
+else
+    # Default fallback if no valid mode is given
+    echo "Usage: dj [chill|hype|anime]"
+    exit 1
+fi
+
+# 3. Construct the Mix URL (RD + VideoID) and launch MPV
+# We use nohup so closing the terminal doesn't kill the music
+nohup mpv "https://www.youtube.com/watch?v=${SELECTED_ID}&list=RD${SELECTED_ID}" >/dev/null 2>&1 &

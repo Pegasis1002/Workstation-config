@@ -15,6 +15,7 @@ sudo pacman -S --noconfirm \
     wl-clipboard android-tools \
     python-adblock python-tldextract \
     keyd
+sudo pacman -S cataclysm-tiles
 
 # --- Installing Fonts --- 
 echo " Installing Essential Fonts Packages..."
@@ -30,7 +31,6 @@ fi
 # --- 3. AUR PACKAGES ---
 echo "📦 Installing AUR Tools..."
 # Add other AUR packages here if needed (e.g., cataclysm-dda-git)
-yay -S --noconfirm cataclysm-dda-git
 
 # --- 4. LINKING CONFIGS (GNU Stow) ---
 echo "🔗 Linking Dotfiles..."

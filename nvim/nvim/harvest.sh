@@ -1,0 +1,1 @@
+/home/dfg/dotfiles/.config/nvim/harvest.sh

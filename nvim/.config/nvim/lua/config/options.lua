@@ -1,8 +1,7 @@
--- 1. GLOBALS & LEADER
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- NETRW PRECISION CONFIG
+-- NETRW
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.g.netrw_browse_split = 0
@@ -11,7 +10,7 @@ vim.g.netrw_winsize = 25
 vim.g.netrw_keepdir = 0
 vim.g.netrw_localcopydircmd = 'cp -r'
 
--- 2. OPTIONS
+-- OPTIONS
 vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true

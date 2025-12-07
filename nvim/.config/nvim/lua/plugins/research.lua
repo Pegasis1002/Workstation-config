@@ -1,4 +1,5 @@
 return {
+    -- The Second Brain (Neorg)
     {
         "nvim-neorg/neorg",
         version = "*", 
@@ -26,6 +27,7 @@ return {
             { "<leader>ni", "<cmd>Neorg index<cr>", desc = "Open Brain" },
         }
     },
+    -- The Offline Library (DevDocs)
     {
         "luckasRanarison/nvim-devdocs",
         dependencies = {

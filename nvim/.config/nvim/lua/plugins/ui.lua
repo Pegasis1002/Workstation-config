@@ -9,6 +9,7 @@ return {
                     colors.bg = "#000000"
                     colors.bg_dark = "#000000"
                     colors.bg_float = "#000000"
+                    -- Matrix Green Overrides
                     local matrix_green = "#20c20e"
                     local matrix_teal = "#44aacc"
                     colors.purple = matrix_green

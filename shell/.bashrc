@@ -94,3 +94,6 @@ alias check="btop"
 
 # Clean unsued packages
 alias sweep="sudo pacman -Rns $(pacman -Qtdq); sudo pacman -Sc"
+
+alias cp='advcp -g'
+alias mv='advmv -g'

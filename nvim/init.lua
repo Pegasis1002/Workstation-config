@@ -221,3 +221,18 @@ cmp.setup({
     { name = 'buffer' },
   })
 })
+
+-- AUTO-MKDIR: Create parent directories when saving a file
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
+    callback = function(event)
+        -- Ignore special buffers (like URLs or protocols)
+        if event.match:match("^%w%w+://") then
+            return
+        end
+        -- Get the file path
+        local file = vim.loop.fs_realpath(event.match) or event.match
+        -- Create the directory path (p call ensures no error if exists)
+        vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+    end,
+})

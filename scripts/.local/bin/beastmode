@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# --- CONFIGURATION ---
+CODE_DIR="$HOME/code"
+RESEARCH_BROWSER="qutebrowser" 
+TERMINAL="kitty"
+
+# --- 1. PROJECT SELECTION ---
+PROJECT=$(ls -1 "$CODE_DIR" | rofi -dmenu -theme ~/.config/rofi/beast.rasi -p "🚀 PROJECT")
+
+if [ -z "$PROJECT" ]; then
+    exit 0
+fi
+
+PROJ_PATH="$CODE_DIR/$PROJECT"
+DOCS_PATH="$PROJ_PATH/docs"
+# Path to project-specific Neorg notes
+NEORG_FILE="$PROJ_PATH/notes.norg" 
+
+# --- 2. VISUAL TRIGGER ---
+hyprctl keyword general:col.active_border "rgb(ff0000)"
+hyprctl keyword general:col.inactive_border "rgb(440000)"
+
+# --- 3. THE PURGE ---
+# Kill everything EXCEPT Firefox (Music)
+killall -q kitty qutebrowser discord steam spotify vlc slack signal-desktop thunar obsidian
+sleep 0.5 # Wait for cleanup
+
+# --- 4. ORCHESTRATION ---
+
+# --- A. BACKGROUND: MUSIC (Workspace 9) ---
+if ! pgrep -x "firefox" > /dev/null; then
+    gtk-launch firefox &
+fi
+
+# --- B. LEFT MONITOR: RESEARCH (Workspace 2) ---
+# Hyprland config forces this to W2
+$RESEARCH_BROWSER &
+
+# --- C. CENTER MONITOR: DOCS OR NOTES (Workspace 1) ---
+hyprctl dispatch workspace 1
+
+if [ -d "$DOCS_PATH" ]; then
+    # Option A: 'docs' folder exists -> Open it
+    # We open nvim inside the docs folder
+    $TERMINAL --title "docs-$PROJECT" --working-directory "$DOCS_PATH" -e nvim . &
+else
+    # Option B: No 'docs' folder -> Open Neorg notes
+    # Create the file if it doesn't exist so nvim doesn't complain
+    if [ ! -f "$NEORG_FILE" ]; then
+        touch "$NEORG_FILE"
+    fi
+    # Open nvim directly editing the .norg file
+    $TERMINAL --title "notes-$PROJECT" --working-directory "$PROJ_PATH" -e nvim notes.norg &
+fi
+hyprctl dispatch movetoworkspace 1
+
+# --- D. RIGHT MONITOR: CODE (Workspace 3) ---
+hyprctl dispatch workspace 3
+$TERMINAL --title "main-$PROJECT" --working-directory "$PROJ_PATH" -e nvim . &
+sleep 0.2
+hyprctl dispatch movetoworkspace 3
+
+# --- E. FOCUS ---
+hyprctl dispatch workspace 3

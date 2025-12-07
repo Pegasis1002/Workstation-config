@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Reset borders to your nice theme colors (Example: Blue/Purple)
+hyprctl keyword general:col.active_border "rgb(33ccff) rgb(00ff99) 45deg"
+hyprctl keyword general:col.inactive_border "rgba(595959aa)"
+
+hyprctl notify 1 4000 "rgb(00ff00)" "☕ Mode: Relaxed"

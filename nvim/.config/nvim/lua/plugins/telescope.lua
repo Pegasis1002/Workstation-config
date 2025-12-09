@@ -12,7 +12,7 @@ return {
     {
       "<leader>fg",
       function()
-        require("telescope.builtin").live_grep()
+        require("telescope.builtin").live_Grep()
       end,
       desc = "Live grep",
     },

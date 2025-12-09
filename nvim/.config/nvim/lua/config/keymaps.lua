@@ -17,3 +17,8 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- Yank to system clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+-- Create new document
+vim.keymap.set("n", "<leader>nd", function()
+  require("config.doc-manager").create_doc_entry()
+end, { desc = "New Document" })

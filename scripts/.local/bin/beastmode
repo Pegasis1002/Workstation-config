@@ -43,7 +43,7 @@ hyprctl dispatch workspace 1
 if [ -d "$DOCS_PATH" ]; then
     # Option A: 'docs' folder exists -> Open it
     # We open nvim inside the docs folder
-    $TERMINAL --title "docs-$PROJECT" --working-directory "$DOCS_PATH" -e nvim . &
+    $TERMINAL --title "docs-$PROJECT" --working-directory "$PROJ_PATH" -e nvim ./docs &
 else
     # Option B: No 'docs' folder -> Open Neorg notes
     # Create the file if it doesn't exist so nvim doesn't complain
